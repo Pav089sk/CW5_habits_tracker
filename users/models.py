@@ -21,7 +21,7 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
-    telegram_chat_id = models.CharField(max_length=50, blank=True, null=True, verbose_name="Telegram chat ID")
+    telegram_chat_id = models.CharField(max_length=50, blank=True, null=True, verbose_name="Chat ID для Telegram")
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)

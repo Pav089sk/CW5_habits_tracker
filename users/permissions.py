@@ -1,9 +1,9 @@
 from rest_framework import permissions
 
 
-class IsOwner(permissions.BasePermission):
+class IsFounder(permissions.BasePermission):
     """
-       Разрешение только владельцу объекта.
+       Класс для разрешения создателю объекта.
     """
     def has_object_permission(self, request, view, obj):
-        return obj.owner == request.user
+        return obj.founder == request.user
