@@ -7,6 +7,8 @@ class HabitSerializer(serializers.ModelSerializer):
         model = Habit
         fields = [
             'id',
+            'place',
+            'time',
             'action',
             'founder',
             'is_pleasant',
@@ -14,6 +16,7 @@ class HabitSerializer(serializers.ModelSerializer):
             'linked_habit',
             'periodicity',
             'execution_time',
+            'is_public'
         ]
 
     def validate(self, attrs):

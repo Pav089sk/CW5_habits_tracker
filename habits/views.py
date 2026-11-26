@@ -1,6 +1,7 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from habits.models import Habit
 from habits.serializers import HabitSerializer
+
 from users.permissions import IsFounder
 
 
@@ -22,6 +23,8 @@ class HabitViewSet(viewsets.ModelViewSet):
 
 class PublicHabitsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Habit.objects.all()
+    serializer_class = HabitSerializer
+    permission_classes = [permissions.AllowAny]  # Разрешаем доступ всем
 
     def get_queryset(self):
         return Habit.objects.filter(is_public=True)

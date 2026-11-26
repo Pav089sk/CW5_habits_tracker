@@ -21,8 +21,9 @@ schema_view = get_schema_view(
 )
 
 router = DefaultRouter()
-router.register(r'habits', HabitViewSet, basename='habit')
 router.register(r'habits/public', PublicHabitsViewSet, basename='habit-public')
+router.register(r'habits', HabitViewSet, basename='habit')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),

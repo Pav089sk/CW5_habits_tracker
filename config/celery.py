@@ -17,8 +17,8 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 
 app.conf.beat_schedule = {
-    'Check activity users': {
-        'task': 'users.tasks.block_inactive_users',
-        'schedule': crontab(hour=8, minute=0),
+    'send-habit-reminders': {
+        'task': 'habits.tasks.send_habit_reminder',
+        'schedule': 60.0,  # Каждые 60 секунд
     },
 }
