@@ -1,6 +1,4 @@
-from django.shortcuts import render
 from rest_framework import viewsets
-
 from habits.models import Habit
 from habits.serializers import HabitSerializer
 from users.permissions import IsFounder
@@ -22,6 +20,8 @@ class HabitViewSet(viewsets.ModelViewSet):
         serializer.save(founder=self.request.user)
 
 
+class PublicHabitsViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Habit.objects.all()
 
-
-
+    def get_queryset(self):
+        return Habit.objects.filter(is_public=True)

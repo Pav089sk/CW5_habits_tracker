@@ -135,8 +135,9 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PAGINATION_CLASS':
         'rest_framework.pagination.PageNumberPagination',
-        'PAGE_SIZE': 5,
 }
+PAGE_SIZE = 5
+
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
@@ -162,11 +163,15 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "http://127.0.0.1:3000"]
 CORS_ALLOW_CREDENTIALS = True
 
-# CELERY_BEAT_SCHEDULE = {
-#     'my-task': {
-#         'task': 'myapp.tasks.my_task',   # ← подставь реальный путь к задаче
-#         'schedule': timedelta(minutes=10),
-#     },
-# }
-#
-# CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
+
+
+CELERY_BEAT_SCHEDULE = {
+    'my-task': {
+        'task': 'habits.tasks.send_habit_reminder',
+        'schedule': timedelta(minutes=1),
+    },
+}
+
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
