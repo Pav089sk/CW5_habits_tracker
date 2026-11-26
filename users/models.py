@@ -22,7 +22,7 @@ class CustomUserManager(BaseUserManager):
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     telegram_chat_id = models.CharField(max_length=50, blank=True, null=True, verbose_name="Chat ID для Telegram")
-    last_reminder_date = models.DateField(null=True, blank=True)
+
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
